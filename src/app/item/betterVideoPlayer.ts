@@ -19,11 +19,49 @@ export class BetterPlayer extends View {
 
         this.mediaPlayer = new com.halilibo.bettervideoplayer.BetterVideoPlayer(this._context);
 
-        console.dir(this.mediaPlayer);
+        //console.dir(this.mediaPlayer);
 
         this.mediaPlayer.setSource(url);
         this.mediaPlayer.setAutoPlay(true);
         this.mediaPlayer.setHideControlsOnPlay(true);
+
+        this.mediaPlayer.setCallback(new com.halilibo.bettervideoplayer.BetterVideoCallback({
+            onPause() {
+            },
+
+            onStarted(player) {
+                //Log.i(TAG, "Started");
+            },
+
+            onPaused(player) {
+                //Log.i(TAG, "Paused");
+            },
+
+            onPreparing(player) {
+                console.log("onPreparing")
+            },
+
+            onPrepared(player) {
+                //Log.i(TAG, "Prepared");
+            },
+
+            onBuffering(percent) {
+                //Log.i(TAG, "Buffering " + percent);
+            },
+
+            onError(player, e) {
+                //Log.i(TAG, "Error " +e.getMessage());
+                console.log("error")
+            },
+
+            onCompletion(player) {
+                //Log.i(TAG, "Completed");
+            },
+
+            onToggleControls(player, isShowing) {
+                //Log.i(TAG, "Controls toggled " + isShowing);
+            }
+        }))
 
         return this.mediaPlayer;
     }
