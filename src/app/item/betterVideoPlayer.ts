@@ -1,10 +1,10 @@
 import { View } from "tns-core-modules/ui/core/view";
 
-declare var com, android;
+declare var android;
 
 export class BetterPlayer extends View {
 
-    public mediaPlayer;
+    public mediaPlayer: com.halilibo.bettervideoplayer.BetterVideoPlayer;
 
     public createNativeView(): any {
 
@@ -19,15 +19,15 @@ export class BetterPlayer extends View {
 
         this.mediaPlayer = new com.halilibo.bettervideoplayer.BetterVideoPlayer(this._context);
 
-        //console.dir(this.mediaPlayer);
-
         this.mediaPlayer.setSource(url);
-        this.mediaPlayer.setAutoPlay(true);
+        //this.mediaPlayer.setAutoPlay(true);
         this.mediaPlayer.setHideControlsOnPlay(true);
 
+        let subTitle = android.net.Uri.parse("https://resources.mynaparrot.com/subtitles/D_1_subtitles_en.srt");
+
+        this.mediaPlayer.setCaptions(subTitle, com.halilibo.bettervideoplayer.subtitle.CaptionsView.CMime.SUBRIP);
+
         this.mediaPlayer.setCallback(new com.halilibo.bettervideoplayer.BetterVideoCallback({
-            onPause() {
-            },
 
             onStarted(player) {
                 //Log.i(TAG, "Started");
