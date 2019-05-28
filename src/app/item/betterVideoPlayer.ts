@@ -61,7 +61,9 @@ export class BetterPlayer extends View {
             onToggleControls(player, isShowing) {
                 //Log.i(TAG, "Controls toggled " + isShowing);
             }
-        }))
+        }));
+
+        this.mediaPlayer.onFinishInflate();
 
         return this.mediaPlayer;
     }
